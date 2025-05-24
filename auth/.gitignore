@@ -1,0 +1,4 @@
+# Ignore Kubernetes secrets
+manifests/secret.yaml
+# Ignore dotenv files if used
+.env
