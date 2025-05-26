@@ -37,7 +37,7 @@ def login():
   else:
     return 'User not found', 401
 
-@server.route("/validate", method=["POST"])
+@server.route("/validate", methods=["POST"])
 def validate(): 
   encoded_jwt = request.headers["Authorization"]
   if not encoded_jwt:
@@ -47,7 +47,7 @@ def validate():
 
   try: 
     decoded = jwt.decode(
-      encoded_jwt, os.environ.get("JWT_SECRET"), algorithm = ["HS256"]
+      encoded_jwt, os.environ.get("JWT_SECRET"), algorithms = ["HS256"]
     )
   except: 
     return "Unauthorized", 403
@@ -56,16 +56,16 @@ def validate():
   
 
 
-  def create_JWT(username, secret, authz):
-    return jwt.encode(
-      {
-        "username": username, 
-        "exp": datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(days=1),
-        "iat": datetime.date.utcnow(), 
-        "admin": authz
-      }, 
-      secret, 
-      algorithm="HS256"
-    )
-  if __name__ == "__main__": 
-    server.run(host="0.0.0.0", port=5000, debug=True)
+def create_JWT(username, secret, authz):
+  return jwt.encode(
+    {
+      "username": username, 
+      "exp": datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(days=1),
+      "iat": datetime.date.now(tz=datetime.timezone.utc), 
+      "admin": authz
+    }, 
+    secret, 
+    algorithm="HS256"
+  )
+if __name__ == "__main__": 
+  server.run(host="0.0.0.0", port=5000, debug=True)
