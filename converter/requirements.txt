@@ -1,0 +1,9 @@
+# Core dependencies for the converter service
+pika==1.3.2
+pymongo==4.6.1
+moviepy==1.0.3
+
+# Additional dependencies that moviepy might need
+imageio==2.34.0
+imageio-ffmpeg==0.4.9
+numpy==1.24.3
