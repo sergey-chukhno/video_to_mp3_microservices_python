@@ -1,0 +1,12 @@
+# Core dependencies for the notification service
+pika==1.3.2
+
+# Email functionality is provided by Python's built-in libraries:
+# - smtplib (built-in)
+# - email.message (built-in)
+# - json (built-in)
+# - os (built-in)
+# - sys (built-in)
+# - time (built-in)
+
+# No additional packages needed beyond pika for RabbitMQ do
